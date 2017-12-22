@@ -1,0 +1,72 @@
+一、检查当前数据库编码。
+使用语句：
+show variables like "%character%";
+show variables like "%collation%";
+mysql各个编码应该如下图。
+二、如果不是以上情况，需要将mysql编码设置为utf-8。具体步骤如下：
+如果安装mysql时安装了“MySql Sever Instance Configuration Wizard”，则只需要启动该程序进行相应设置即可。如下面截图中所描述，需要将默认编码设置为utf8
+如果没有该程序，需要手动修改mysql编码。
+1、  编辑MySql的配置文件
+MySql的配置文件Windows下一般在系统目录下或者在MySql的安装目录下名字叫my.ini，可以搜索，Linux下一般是 /etc/my.cnf
+ 
+--在 [mysqld] 标签下加上以下内容：
+default-character-set = utf8
+character_set_server = utf8
+注意：如果此标签下已经存在“default-character-set=GBK”类似的内容，只需修改即可。
+--在 [mysql]  标签下加上一行
+default-character-set = utf8
+ 
+--在 [mysql.server]标签下加上一行
+default-character-set = utf8
+ 
+--在 [mysqld_safe]标签下加上一行
+default-character-set = utf8
+ 
+--在 [client]标签下加上一行
+default-character-set = utf8
+ 
+2、  重新启动MySql服务
+Windows可在服务管理器中操作，也可使用命令行：
+net stop mysql 回车
+net start mysql 回车
+服务名可能不一定为mysql，请按自己的设置
+ 
+Linux下面可是用 service mysql restart
+ 
+如果出现启动失败，请检查配置文件有没有设置错误
+ 
+3、  查看设置结果
+登录MySql命令行客户端：打开命令行
+mysql –uroot –p 回车
+输入密码
+进入mysql后 执行 ：show variables like "%character%";
+显示结果应该类似如下：
+ 
+| character_set_client | utf8 |
+| character_set_connection | utf8 |
+| character_set_database | utf8 |
+| character_set_results | utf8 |
+| character_set_server | utf8 |
+| character_set_system | utf8 |
+| character_sets_dir | /usr/share/mysql/charsets/ |
+ 
+如果仍有编码不是utf8的，请检查配置文件，也可使用mysql命令设置：
+set character_set_client = utf8;
+set character_set_server = utf8;
+set character_set_connection = utf8;
+set character_set_database = utf8;
+set character_set_results = utf8;
+set collation_connection = utf8_general_ci;
+set collation_database = utf8_general_ci;
+set collation_server = utf8_general_ci;
+ 
+ 
+ 
+另外：
+ 
+建立数据库时可以使用以下命令：
+create database app_relation character set utf8; 
+use app_relation;
+source E:/MyEclipseWorkspace/shiro.demo/init/sql/tables.sql;
+修改数据库编码的命令为：
+alter database app_relation character set utf8; 

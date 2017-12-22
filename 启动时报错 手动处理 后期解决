@@ -1,0 +1,21 @@
+使用时pom.xml加载jar有问题。直接下载jar在lib文件下bulid path.
+启动时报错：E:\MyEclipseWorkspace\.metadata\.me_tcat7\webapps\shiro.demo\WEB-INF
+没有生成lib文件或者lib文件夹下jar包缺少。
+
+每次重启加载到tomcat下报错。需要手动导入jar包
+
+
+启动时报错，要启动redis服务。E:\jar\redis 安装包 有使用说明。
+具体如下：
+C:\Users\asrs>cd D:\软件安装\redis\32bit
+
+C:\Users\asrs>d:
+
+D:\软件安装\redis\32bit>redis-server.exe redis.conf
+
+初次加载后 登录名和密码管理员帐号：admin，密码： sojson  （如果密码错误，请用sojson.com ）
+
+未解决jar包问题，仍有包没有导全。
+
+
+
